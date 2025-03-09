@@ -1,5 +1,3 @@
-
-
 Here’s a list of 50 basic Python programs for beginners with examples:
 
 ---
@@ -381,3 +379,264 @@ print("Sum of odd numbers:", odd_sum)
 ### 29. **Count Digits in a Number**
 Count the number of digits in a given number.
 
+
+
+```python
+num = int(input("Enter a number: "))
+count = len(str(num))
+print("Number of digits:", count)
+```
+
+---
+
+### 30. **Remove Punctuation from a String**
+Remove all punctuation marks from a string.
+
+```python
+import string
+s = input("Enter a string: ")
+s_no_punctuation = ''.join(ch for ch in s if ch not in string.punctuation)
+print("String without punctuation:", s_no_punctuation)
+```
+
+---
+
+### 31. **Find the Second Largest Number**
+Find the second largest number in a list.
+
+```python
+numbers = [int(x) for x in input("Enter numbers separated by space: ").split()]
+numbers.sort()
+print("Second largest number:", numbers[-2])
+```
+
+---
+
+### 32. **Check Anagram**
+Check if two strings are anagrams (contain the same characters in a different order).
+
+```python
+s1 = input("Enter first string: ")
+s2 = input("Enter second string: ")
+if sorted(s1) == sorted(s2):
+    print("Anagram")
+else:
+    print("Not an anagram")
+```
+
+---
+
+### 33. **Binary to Decimal Conversion**
+Convert a binary number to its decimal equivalent.
+
+```python
+binary = input("Enter a binary number: ")
+decimal = int(binary, 2)
+print("Decimal:", decimal)
+```
+
+---
+
+### 34. **Decimal to Binary Conversion**
+Convert a decimal number to binary.
+
+```python
+decimal = int(input("Enter a decimal number: "))
+binary = bin(decimal)[2:]
+print("Binary:", binary)
+```
+
+---
+
+### 35. **Check for Substring**
+Check if a substring exists within a given string.
+
+```python
+s = input("Enter a string: ")
+substr = input("Enter a substring: ")
+if substr in s:
+    print("Substring found")
+else:
+    print("Substring not found")
+```
+
+---
+
+### 36. **Reverse a List**
+Reverse a list without using the built-in reverse() function.
+
+```python
+lst = [1, 2, 3, 4, 5]
+reversed_lst = lst[::-1]
+print("Reversed list:", reversed_lst)
+```
+
+---
+
+### 37. **Remove Duplicates from List**
+Remove duplicate elements from a list.
+
+```python
+lst = [1, 2, 2, 3, 4, 4, 5]
+unique_lst = list(set(lst))
+print("List without duplicates:", unique_lst)
+```
+
+---
+
+### 38. **Find the Length of a String**
+Find the length of a given string.
+
+```python
+s = input("Enter a string: ")
+print("Length of the string:", len(s))
+```
+
+---
+
+### 39. **Merge Two Lists**
+Merge two lists into one.
+
+```python
+list1 = [1, 2, 3]
+list2 = [4, 5, 6]
+merged_list = list1 + list2
+print("Merged list:", merged_list)
+```
+
+---
+
+### 40. **Count Frequency of Elements in List**
+Count the frequency of each element in a list.
+
+```python
+lst = [1, 2, 2, 3, 3, 3, 4]
+frequency = {x: lst.count(x) for x in lst}
+print("Frequency:", frequency)
+```
+
+---
+
+### 41. **Sort a List of Numbers**
+Sort a list of numbers in ascending or descending order.
+
+```python
+lst = [5, 3, 8, 1, 2]
+lst.sort()
+print("Sorted list:", lst)
+```
+
+---
+
+### 42. **Matrix Transpose**
+Find the transpose of a matrix.
+
+```python
+matrix = [[1, 2], [3, 4]]
+transpose = [[row[i] for row in matrix] for i in range(len(matrix[0]))]
+print("Transpose:")
+for row in transpose:
+    print(row)
+```
+
+---
+
+### 43. **Check Symmetry of a Matrix**
+Check if a matrix is symmetric (equal to its transpose).
+
+```python
+matrix = [[1, 2], [2, 1]]
+transpose = [[row[i] for row in matrix] for i in range(len(matrix[0]))]
+if matrix == transpose:
+    print("Symmetric")
+else:
+    print("Not symmetric")
+```
+
+---
+
+### 44. **Sum of Diagonal Elements in a Matrix**
+Find the sum of the diagonal elements of a matrix.
+
+```python
+matrix = [[1, 2], [3, 4]]
+diagonal_sum = sum(matrix[i][i] for i in range(len(matrix)))
+print("Diagonal sum:", diagonal_sum)
+```
+
+---
+
+### 45. **Convert String to List**
+Convert a string into a list of words.
+
+```python
+s = input("Enter a string: ")
+words = s.split()
+print("List of words:", words)
+```
+
+---
+
+### 46. **Find the Common Elements in Two Lists**
+Find common elements between two lists.
+
+```python
+list1 = [1, 2, 3, 4]
+list2 = [3, 4, 5, 6]
+common_elements = list(set(list1) & set(list2))
+print("Common elements:", common_elements)
+```
+
+---
+
+### 47. **Sum of Elements in a List**
+Calculate the sum of elements in a list.
+
+```python
+lst = [1, 2, 3, 4]
+total = sum(lst)
+print("Sum of elements:", total)
+```
+
+---
+
+### 48. **Remove All Occurrences of a Value from a List**
+Remove all occurrences of a specific value from a list.
+
+```python
+lst = [1, 2, 3, 2, 4, 2]
+value = 2
+lst = [x for x in lst if x != value]
+print("List after removal:", lst)
+```
+
+---
+
+### 49. **Replace a Substring in a String**
+Replace a part of the string with another substring.
+
+```python
+s = input("Enter a string: ")
+old_substring = input("Enter the substring to replace: ")
+new_substring = input("Enter the new substring: ")
+result = s.replace(old_substring, new_substring)
+print("Updated string:", result)
+```
+
+---
+
+### 50. **Check if a String is a Valid Email**
+Validate whether a given string is a valid email address.
+
+```python
+import re
+email = input("Enter an email address: ")
+if re.match(r"[^@]+@[^@]+\.[^@]+", email):
+    print("Valid email")
+else:
+    print("Invalid email")
+```
+
+---
+
+These are 50 basic Python programs with examples that will help you practice essential concepts such as loops, conditionals, functions, data structures, and algorithms. Try them out to gain confidence in Python!
