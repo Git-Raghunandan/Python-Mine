@@ -1,0 +1,608 @@
+
+Here’s a list of 50 basic Python programs that can help automate Linux administration tasks for beginners:
+
+---
+
+### 1. **Display System Information**
+Display basic system information like OS, hostname, architecture, and kernel version.
+
+```python
+import platform
+print("OS:", platform.system())
+print("Architecture:", platform.architecture())
+print("Kernel Version:", platform.release())
+print("Hostname:", platform.node())
+```
+
+---
+
+### 2. **Check Disk Usage**
+Check the disk usage of the system.
+
+```python
+import os
+os.system("df -h")
+```
+
+---
+
+### 3. **Check Memory Usage**
+Check the system's memory usage.
+
+```python
+import os
+os.system("free -h")
+```
+
+---
+
+### 4. **List All Running Processes**
+List all running processes on the system.
+
+```python
+import os
+os.system("ps aux")
+```
+
+---
+
+### 5. **Check Uptime**
+Check the system uptime.
+
+```python
+import os
+os.system("uptime")
+```
+
+---
+
+### 6. **Display System Load**
+Display the system's load average over 1, 5, and 15 minutes.
+
+```python
+import os
+os.system("uptime")
+```
+
+---
+
+### 7. **Create a Directory**
+Create a new directory.
+
+```python
+import os
+dir_name = input("Enter directory name: ")
+os.makedirs(dir_name, exist_ok=True)
+print(f"Directory '{dir_name}' created!")
+```
+
+---
+
+### 8. **Delete a Directory**
+Delete a specified directory.
+
+```python
+import os
+dir_name = input("Enter directory name to delete: ")
+os.rmdir(dir_name)
+print(f"Directory '{dir_name}' deleted!")
+```
+
+---
+
+### 9. **Check Running Services**
+Check which services are running.
+
+```python
+import os
+os.system("systemctl list-units --type=service")
+```
+
+---
+
+### 10. **Start a Service**
+Start a specified service.
+
+```python
+import os
+service = input("Enter service name to start: ")
+os.system(f"sudo systemctl start {service}")
+```
+
+---
+
+### 11. **Stop a Service**
+Stop a specified service.
+
+```python
+import os
+service = input("Enter service name to stop: ")
+os.system(f"sudo systemctl stop {service}")
+```
+
+---
+
+### 12. **Restart a Service**
+Restart a specified service.
+
+```python
+import os
+service = input("Enter service name to restart: ")
+os.system(f"sudo systemctl restart {service}")
+```
+
+---
+
+### 13. **Check CPU Usage**
+Display the current CPU usage.
+
+```python
+import os
+os.system("top -n 1 | grep Cpu")
+```
+
+---
+
+### 14. **Check Disk Space**
+Check the disk space usage of a directory.
+
+```python
+import os
+path = input("Enter directory path to check space: ")
+os.system(f"du -sh {path}")
+```
+
+---
+
+### 15. **Backup Files**
+Backup specified files to another directory.
+
+```python
+import shutil
+src = input("Enter file path to backup: ")
+dst = input("Enter backup directory: ")
+shutil.copy(src, dst)
+print(f"File {src} backed up to {dst}")
+```
+
+---
+
+### 16. **Delete a File**
+Delete a specified file.
+
+```python
+import os
+file_path = input("Enter file path to delete: ")
+os.remove(file_path)
+print(f"File {file_path} deleted!")
+```
+
+---
+
+### 17. **Rename a File**
+Rename a file or directory.
+
+```python
+import os
+old_name = input("Enter the current file name: ")
+new_name = input("Enter the new file name: ")
+os.rename(old_name, new_name)
+print(f"File renamed from {old_name} to {new_name}")
+```
+
+---
+
+### 18. **List All Files in a Directory**
+List all files in a directory.
+
+```python
+import os
+dir_path = input("Enter directory path to list files: ")
+for filename in os.listdir(dir_path):
+    print(filename)
+```
+
+---
+
+### 19. **Find Files by Extension**
+Find all files with a specific extension in a directory.
+
+```python
+import os
+dir_path = input("Enter directory path: ")
+extension = input("Enter file extension (e.g., .txt): ")
+for filename in os.listdir(dir_path):
+    if filename.endswith(extension):
+        print(filename)
+```
+
+---
+
+### 20. **Check if File Exists**
+Check if a file exists in a directory.
+
+```python
+import os
+file_path = input("Enter file path to check: ")
+if os.path.exists(file_path):
+    print("File exists!")
+else:
+    print("File does not exist.")
+```
+
+---
+
+### 21. **Search for a String in a File**
+Search for a specific string in a file.
+
+```python
+file_path = input("Enter file path to search in: ")
+search_string = input("Enter string to search: ")
+with open(file_path, 'r') as file:
+    for line in file:
+        if search_string in line:
+            print(line)
+```
+
+---
+
+### 22. **Monitor Log Files**
+Monitor a log file for changes.
+
+```python
+import os
+os.system("tail -f /var/log/syslog")
+```
+
+---
+
+### 23. **Check Network Configuration**
+Check the network configuration of the system.
+
+```python
+import os
+os.system("ifconfig")
+```
+
+---
+
+### 24. **Check Open Ports**
+Check which ports are open on the system.
+
+```python
+import os
+os.system("netstat -tuln")
+```
+
+---
+
+### 25. **Send an Email Notification**
+Send an email when a specific event occurs (using `smtplib`).
+
+```python
+import smtplib
+from email.mime.text import MIMEText
+
+sender = "your_email@gmail.com"
+recipient = "recipient_email@gmail.com"
+subject = "Test Email"
+body = "This is a test email."
+
+msg = MIMEText(body)
+msg['Subject'] = subject
+msg['From'] = sender
+msg['To'] = recipient
+
+with smtplib.SMTP('smtp.gmail.com', 587) as server:
+    server.starttls()
+    server.login(sender, "your_password")
+    server.sendmail(sender, recipient, msg.as_string())
+print("Email sent!")
+```
+
+---
+
+### 26. **Check Available Packages**
+List installed packages on the system.
+
+```python
+import os
+os.system("dpkg --list")
+```
+
+---
+
+### 27. **Install a Package**
+Install a package using apt (for Debian-based systems).
+
+```python
+import os
+package_name = input("Enter package name to install: ")
+os.system(f"sudo apt install {package_name}")
+```
+
+---
+
+### 28. **Remove a Package**
+Remove a package from the system.
+
+```python
+import os
+package_name = input("Enter package name to remove: ")
+os.system(f"sudo apt remove {package_name}")
+```
+
+---
+
+### 29. **Update System Packages**
+Update system packages.
+
+```python
+import os
+os.system("sudo apt update && sudo apt upgrade -y")
+```
+
+---
+
+### 30. **Check the System's IP Address**
+Check the system's current IP address.
+
+```python
+import os
+os.system("hostname -I")
+```
+
+---
+
+### 31. **Check System Log**
+Display the system logs.
+
+```python
+import os
+os.system("cat /var/log/syslog")
+```
+
+---
+
+### 32. **Shutdown the System**
+Shutdown the system after a specified time.
+
+```python
+import os
+os.system("sudo shutdown -h +5")  # Shutdown in 5 minutes
+```
+
+---
+
+### 33. **Reboot the System**
+Reboot the system.
+
+```python
+import os
+os.system("sudo reboot")
+```
+
+---
+
+### 34. **Check Active Network Connections**
+List active network connections.
+
+```python
+import os
+os.system("netstat -tuln")
+```
+
+---
+
+### 35. **Backup MySQL Database**
+Backup a MySQL database to a file.
+
+```python
+import os
+db_name = input("Enter database name: ")
+backup_file = input("Enter backup file path: ")
+os.system(f"mysqldump -u root -p {db_name} > {backup_file}")
+print("Backup completed.")
+```
+
+---
+
+### 36. **Monitor System Processes**
+Monitor system processes.
+
+```python
+import os
+os.system("top -n 1")
+```
+
+---
+
+### 37. **Change File Permissions**
+Change file permissions for a file.
+
+```python
+import os
+file_path = input("Enter file path: ")
+permissions = input("Enter permissions (e.g., 755): ")
+os.system(f"chmod {permissions} {file_path}")
+```
+
+---
+
+### 38. **Create a Cron Job**
+Create a cron job to automate tasks.
+
+```python
+import os
+cron_time = input("Enter cron time format: ")
+command = input("Enter command to run: ")
+os.system(f"(crontab -l; echo '{cron_time} {command}') | crontab -")
+```
+
+---
+
+### 39. **Delete Old Files**
+Delete files older than a specified number of days.
+
+```python
+import os
+import time
+days = int(input("Enter the number of days: "))
+folder = input("Enter folder path: ")
+
+current_time = time.time()
+
+for filename in os.listdir(folder):
+    file_path = os.path.join(folder, filename)
+    if os.path.isfile(file_path):
+        file_age = current_time - os.path.getmtime(file_path)
+        if file_age > days * 86400:
+            os.remove(file_path)
+            print(f"Deleted {filename}")
+```
+
+---
+
+### 40. **Find Large Files**
+Find files larger than a specified size.
+
+```python
+import os
+import glob
+
+size_limit = int(input("Enter size limit in bytes: "))
+path = input("Enter directory path: ")
+
+for file in glob.glob(f"{path}/**", recursive=True):
+    if os.path.getsize(file) > size_limit:
+        print(f"Large file: {file} - Size: {os.path.getsize(file)} bytes")
+```
+
+---
+
+### 41. **Find Recently Modified Files**
+Find files modified within the last N days.
+
+```python
+import os
+import time
+
+days = int(input("Enter the number of days: "))
+path = input("Enter directory path: ")
+
+current_time = time.time()
+
+for filename in os.listdir(path):
+    file_path = os.path.join(path, filename)
+    if os.path.isfile(file_path):
+        file_age = current_time - os.path
+
+.getmtime(file_path)
+        if file_age < days * 86400:
+            print(f"Recently modified: {file_path}")
+```
+
+---
+
+### 42. **Check for Available Updates (YUM)**
+Check for updates on CentOS/RHEL-based systems.
+
+```python
+import os
+os.system("sudo yum check-update")
+```
+
+---
+
+### 43. **List Users on System**
+List all users on the system.
+
+```python
+import os
+os.system("cut -d: -f1 /etc/passwd")
+```
+
+---
+
+### 44. **Create a User**
+Create a new user on the system.
+
+```python
+import os
+username = input("Enter the username: ")
+os.system(f"sudo useradd {username}")
+print(f"User {username} created!")
+```
+
+---
+
+### 45. **Delete a User**
+Delete a user from the system.
+
+```python
+import os
+username = input("Enter the username to delete: ")
+os.system(f"sudo userdel {username}")
+print(f"User {username} deleted!")
+```
+
+---
+
+### 46. **Add a User to a Group**
+Add a user to a group.
+
+```python
+import os
+username = input("Enter the username: ")
+group = input("Enter the group: ")
+os.system(f"sudo usermod -aG {group} {username}")
+print(f"User {username} added to {group}!")
+```
+
+---
+
+### 47. **Change Password of a User**
+Change the password for a user.
+
+```python
+import os
+username = input("Enter the username: ")
+new_password = input("Enter new password: ")
+os.system(f"echo '{username}:{new_password}' | sudo chpasswd")
+print(f"Password for {username} changed!")
+```
+
+---
+
+### 48. **Get Process ID of a Service**
+Get the process ID of a running service.
+
+```python
+import os
+service = input("Enter service name to get PID: ")
+os.system(f"pidof {service}")
+```
+
+---
+
+### 49. **Monitor CPU Temperature**
+Monitor the CPU temperature on Linux.
+
+```python
+import os
+os.system("sensors")
+```
+
+---
+
+### 50. **Check System Time and Date**
+Display the current system time and date.
+
+```python
+import os
+os.system("date")
+```
+
+---
+
+These Python scripts automate common Linux system administration tasks, such as managing users, checking system status, automating backups, and managing services. For security reasons, many of these actions (like modifying system services or installing packages) will require sudo privileges.
